@@ -10,7 +10,7 @@ BucketList.prototype.bindEvents = function () {
   PubSub.subscribe('BucketItemView:item-delete-clicked', (evt) => {
     this.deleteBucketItem(evt.detail);
   });
-  PubSub.subscribe('BucketItemView:item-submitted', (evt) => {
+  PubSub.subscribe('BucketFormView:bucket-item-submitted', (evt) => {
     this.postBucketItem(evt.detail);
   });
 };
@@ -30,7 +30,7 @@ BucketList.prototype.postBucketItem = function (bucketItem) {
   const request = new Request(this.url);
   request.post(bucketItem)
     .then((bucketItems) => {
-      PubSub.publish('BucketListItems:data-loaded', bucketItem);
+      PubSub.publish('BucketListItems:data-loaded', bucketItems);
     })
     .catch(console.error);
 };
@@ -40,7 +40,7 @@ BucketList.prototype.deleteBucketItem = function (bucketItemID) {
   const request = new Request(this.url);
   request.delete(bucketItemID)
     .then((bucketItems) => {
-      PubSub.publish('BucketListItems:data-loaded', bucketItem);
+      PubSub.publish('BucketListItems:data-loaded', bucketItems);
     })
     .catch(console.error);
 };

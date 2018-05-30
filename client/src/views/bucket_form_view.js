@@ -9,8 +9,7 @@ BucketFormView.prototype.bindEvents = function () {
     // console.log(evt.target.value);
     evt.preventDefault();
     const newItem = this.createItem(evt.target);
-    console.log(newItem);
-
+    PubSub.publish('BucketFormView:bucket-item-submitted', newItem)
     evt.target.reset();
   });
 

@@ -1,0 +1,7 @@
+body {
+  display: flex;
+}
+
+.wrapper {
+  margin: 20px;
+}
